@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <h2 :style="{opacity: opacity,}">欢迎学习vue</h2>
+    <button @click="stop">点我停止变换</button>
+    <button @click="onee">点我设置透明度为一</button>
+  </div>
+</body>
+<script>
+  Vue.config.productionTip = false;
+  const vm = new Vue({
+    el: '#root',
+    data() {
+      return {
+        opacity: 1,
+      }
+    },
+    methods: {
+      stop(){
+        this.$destroy()
+      },
+      onee(){
+        this.opacity = 1
+      }
+    },
+    // Vue完成模板的解析并把初始的真实的dom元素放入页面后(挂载完毕)调用mounted
+    mounted() {
+      this.jishiqi = setInterval(() => {
+        console.log('jishiqi');
+          this.opacity -= 0.01;
+          if (this.opacity <= 0) this.opacity = 1;
+          
+        }, 16)
+    },
+    beforeDestroy() {
+      console.log('vm即将归去');
+      clearInterval(this.jishiqi)
+    },
+  })
+</script>
+
+</html>

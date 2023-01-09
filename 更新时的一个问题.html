@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<script src="vue.js"></script>
+
+<body>
+  <div id="root">
+    <button @click="upData">更新马冬梅的信息</button>
+    <ul>
+      <li v-for="(person,index) in persons" :key="person.id">{{person.name}}-{{person.age}}-{{person.sex}}</li>
+    </ul>
+  </div>
+</body>
+<script>
+  Vue.config.productionTip = false;
+  const vm = new Vue({
+    el: '#root',
+    data() {
+      return {
+        persons: [
+          { id: '001', name: '张三', age: '18', sex: '男' },
+          { id: '002', name: '李四', age: '19', sex: '男' },
+          { id: '003', name: '王五', age: '24', sex: '男' },
+          { id: '004', name: '马冬梅', age: '27', sex: '女' },
+          { id: '005', name: '周冬雨', age: '16', sex: '女' },
+          { id: '006', name: '周杰伦', age: '39', sex: '男' },
+          { id: '007', name: '温兆伦', age: '13', sex: '男' },
+        ],
+      }
+    },
+    methods: {
+      upData(){
+        // 奏效
+        // this.persons[3].name='马老师';
+        // this.persons[3].age= 50;
+        // this.persons[3].sex='男';
+
+        // 不奏效
+        // this.persons[3]={ id: '004', name: '马老师', age: '50', sex: '男' }
+
+        // 奏效
+        this.persons.splice(3,1,{ id: '004', name: '马老师', age: '50', sex: '男' })
+      }
+    },
+  })
+</script>
+
+</html>

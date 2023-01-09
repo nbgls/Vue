@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<script src="vue.js"></script>
+<body>
+  <div id="root">
+
+  </div>
+</body>
+<script>
+  Vue.config.productionTip = false;
+
+  Vue.prototype.x = 99;
+
+  const school = Vue.extend({
+    name:'name',
+    template:`<div>
+      <h2>学校名称：{{name}}</h2>  
+      <h2>学校地址：{{address}}</h2>
+      <button @click="showX">点我</button>
+    </div>`,
+    data() {
+      return {
+        name:'尚硅谷',
+        address:'广东深圳'
+      }
+    },
+    methods: {
+        showX(){
+          console.log(this.x);
+        }
+      },
+  })
+    const vm = new Vue({
+      el:'#root',
+      template:`<div>
+        <school></school>
+      </div>`,
+      data() {
+        return {
+          msg:'你好',
+        }
+      },
+      components:{
+        school
+      }
+    })
+
+    console.log(school.prototype.__proto__ === Vue.prototype);
+
+  /* // 定义一个函数
+  function Demo(){
+    this.a = 1;
+    this.b = 2;
+  }
+
+  // 创建一个Demo实例对象
+  const d = new Demo();
+
+  console.log(Demo.prototype);   // 显示原型属性
+
+  console.log(d.__proto__);      // 隐式原型属性
+
+  console.log(Demo.prototype === d.__proto__);
+
+  // 程序员通过显示原型对象操作原型对象 追加一个x属性 值为99
+  Demo.prototype.x = 99;
+
+  console.log('@',d); */
+</script>
+</html>

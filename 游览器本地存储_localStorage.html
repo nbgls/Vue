@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2>好</h2>
+  <button>点我保存数据</button>
+  <button>点我读取数据</button>
+  <button>点我删除数据</button>
+  <button>点我清空数据</button>
+</body>
+<script>
+  const btn1 = document.getElementsByTagName('button')[0]
+  const p = {name:'张三',age:19}
+  btn1.addEventListener('click',function(){
+    window.localStorage.setItem('msg','避孕套')
+    window.localStorage.setItem('msg2',666)
+    window.localStorage.setItem('person',JSON.stringify(p))
+  })
+  document.getElementsByTagName('button')[1].addEventListener('click',function(){
+    console.log(localStorage.getItem('msg'));
+    console.log(localStorage.getItem('666'));
+    console.log(JSON.parse(localStorage.getItem('person')));
+  })
+  document.getElementsByTagName('button')[2].addEventListener('click',function(){
+    localStorage.removeItem('msg')
+  })
+  document.getElementsByTagName('button')[3].addEventListener('click',function(){
+    localStorage.clear()
+  })
+</script>
+</html>

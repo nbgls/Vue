@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="vue.js"></script>
+</head>
+<body>
+  <!-- vue常用的按键别名：
+    回车 => enter
+    删除 => delete(捕获"删除"和"退格"键)
+    退出 => esc
+    空格 => space
+    换行 => tab     (特殊 必须配合keydown使用)
+    上 => up
+    下 => down
+    左 => left
+    右 => right -->
+  <div id="root">
+    <input type="text" placeholder="提示输入" @keydown.tab="showInfo">
+  </div>
+</body>
+
+<script>
+  Vue.config.productionTip = false;
+  const vm = new Vue({
+    data() {
+      return {
+        property: 'value',
+      };
+    },
+    methods:{
+      showInfo(e){
+        console.log(e.key,e.keyCode);
+        console.log(e.target.value);
+      }
+    }
+  });
+  vm.$mount('#root')
+</script>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    姓：<input type="text" v-model="firstName"><br>
+    名：<input type="text" v-model="lastName"><br>
+    全名：<span>{{fullName}}</span>
+  </div>
+</body>
+<script>
+  Vue.config.productionTip = false;
+  const vm = new Vue({
+    data() {
+      return {
+        firstName: '张',
+        lastName:'三',
+        fullName:'张-三'
+      };
+    },
+    // computed:{
+    //   fullName:{
+    //     // get什么时候调用？1 初次读取fullName时 2 所依赖的数据发生变化时
+    //     get(){
+    //       return this.firstName + '-' + this.lastName
+    //     },
+    //     set(value){
+    //       const str = value.split('-');
+    //       this.firstName = str[0];
+    //       this.lastName = str[1];
+    //     }
+    //   }
+    // }
+    watch:{
+      firstName(newValue){
+        this.fullName = this.firstName + '-' + this.lastName;
+      },
+      lastName(newValue){
+        this.fullName = this.firstName + '-' + this.lastName;
+      }
+    }
+  });
+  vm.$mount('#root');
+</script>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="vue.js"></script>
+</head>
+<style>
+  .bisce{
+    width: 400px;
+    height: 100px;
+    border: 1px solid black;
+  }
+  .backgroundO{
+    background-color: orange;
+  }
+  .backgroundY{
+    background-color: yellow;
+  }
+  .backgroundB{
+    background-color: blue;
+  }
+  .bo1{
+    font-weight: bolder;
+  }
+  .bo2{
+    font-size: 24px;
+  }
+  .bo3{
+    border-radius: 15px;
+  }
+</style>
+<body>
+  <div id="root">
+    <div class="bisce" :class="mood" @click="changeMood">{{name}}</div><br><br>
+    <div class="bisce backgroundY" :class="arr">{{name}}</div><br><br>
+    <div class="bisce" :class="objectArr">{{name}}</div><br><br>
+    <div class="bisce" :style="styleObject">{{name}}</div>
+  </div>
+</body>
+<script>
+  Vue.config.productionTip = false;
+  const vm = new Vue({
+    el:'#root',
+    data() {
+      return {
+        name:'尚硅谷',
+        mood:'backgroundO',
+        arr:['bo1','bo2','bo3'],
+        objectArr:{
+          bo1:true,
+          bo2:true,
+          bo3:true
+        },
+        styleObject:{
+          fontSize: '40px',
+          backgroundColor: 'red',
+          color: 'yellow'
+        }
+      }
+    },
+    methods: {
+      changeMood(){
+        const arr = ['backgroundO','backgroundY','backgroundB'];
+        const index = Math.floor(Math.random()*3);
+        this.mood = arr[index];
+      }
+    },
+  })
+</script>
+</html>
